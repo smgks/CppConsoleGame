@@ -1,14 +1,14 @@
 #ifndef CLABEL_H
 #define CLABEL_H
 
-#include <QObject>
+#include "baseconsoleobject.h"
 
-class CLabel : public QObject
+class CLabel : public BaseConsoleObject
 {
     Q_OBJECT
     Q_PROPERTY(QString text READ getText WRITE setText)
 public:
-    explicit CLabel(int x = 0, int y = 0, QObject *parent = nullptr);
+    explicit CLabel(int x = 0, int y = 0, BaseConsoleObject *parent = nullptr);
     QString getText();
     void setText(QString str);
 private:

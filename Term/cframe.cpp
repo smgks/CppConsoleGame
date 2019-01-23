@@ -1,6 +1,6 @@
 #include "cframe.h"
 
-CFrame::CFrame(int v_lines, int h_colums, int x, int y, QObject *parent) : QObject(parent)
+CFrame::CFrame(int v_lines, int h_colums, int x, int y, BaseConsoleObject  *parent) : BaseConsoleObject (parent)
 { 
     horizontal = h_colums;
     vertical = v_lines;

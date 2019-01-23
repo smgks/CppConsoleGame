@@ -36,7 +36,8 @@ SOURCES += \
     States/statecontroller.cpp \
     Term/mainwindow.cpp \
     Term/cframe.cpp \
-    Term/clabel.cpp
+    Term/clabel.cpp \
+    Term/baseconsoleobject.cpp
 
 HEADERS += \
     States/basestate.h \
@@ -47,7 +48,8 @@ HEADERS += \
     States/statecontroller.h \   
     Term/mainwindow.h \
     Term/cframe.h \
-    Term/clabel.h
+    Term/clabel.h \
+    Term/baseconsoleobject.h
 
 
 # Default rules for deployment.

@@ -5,18 +5,18 @@
 #include <ncurses.h>
 #include "cframe.h"
 
-class MainWindow : public QObject
+class MainWindow : public BaseConsoleObject
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QObject *parent = nullptr);
+    explicit MainWindow(BaseConsoleObject  *parent = nullptr);
     ~MainWindow();
     void setCurs(bool v);
     void initialize();
     void reDraw();
+    void update();
 private:
-    void update_();
     QVector<CFrame*> wins_;
     void clearWinsMem_();
     void updateWins_();

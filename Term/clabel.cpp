@@ -1,6 +1,6 @@
 #include "clabel.h"
 
-CLabel::CLabel(int x, int y, QObject *parent) : QObject(parent)
+CLabel::CLabel(int x, int y, BaseConsoleObject  *parent) : BaseConsoleObject(parent)
 {
 
 }

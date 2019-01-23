@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 
 
-MainWindow::MainWindow(QObject *parent) :
-    QObject(parent)
+MainWindow::MainWindow(BaseConsoleObject *parent) :
+    BaseConsoleObject (parent)
 {
     initscr();
     setCurs(0);
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QObject *parent) :
 void MainWindow::initialize()
 {
 
-    update_();
+    update();
     updateWins_();
 
 }
@@ -28,7 +28,7 @@ void MainWindow::reDraw()
     initialize();
 }
 
-void MainWindow::update_()
+void MainWindow::update()
 {
     refresh();
 }
