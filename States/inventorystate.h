@@ -5,6 +5,7 @@
 
 class InventoryState : public BaseState
 {
+    Q_OBJECT
 public:
     InventoryState();
 };

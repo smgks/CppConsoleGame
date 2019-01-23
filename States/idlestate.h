@@ -5,6 +5,7 @@
 
 class IdleState : public BaseState
 {
+    Q_OBJECT
 public:
     IdleState();
 };

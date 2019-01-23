@@ -5,6 +5,7 @@
 
 class GameState : public BaseState
 {
+    Q_OBJECT
 public:
     GameState();
 };

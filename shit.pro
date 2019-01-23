@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       -= gui
 
 TARGET = shit
 TEMPLATE = app
@@ -25,37 +23,32 @@ LIBS += -L/usr/include -lncurses
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++11
+CONFIG += c++11 console
+CONFIG -= app_bundle
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    basestate.cpp \
-    basestate.cpp \
     main.cpp \
-    mainwindow.cpp \
-    main.cpp \
-    mainwindow.cpp \
     States/basestate.cpp \
     States/gamestate.cpp \
     States/menustate.cpp \
     States/idlestate.cpp \
-    States/inventorystate.cpp
+    States/inventorystate.cpp \
+    States/statecontroller.cpp \
+    Term/mainwindow.cpp \
+    Term/cframe.cpp \
+    Term/clabel.cpp
 
 HEADERS += \
-        mainwindow.h \
-    basestate.h \
-    basestate.h \
-    mainwindow.h \
-    mainwindow.h \
     States/basestate.h \
     States/gamestate.h \
     States/menustate.h \
     States/idlestate.h \
-    States/inventorystate.h
+    States/inventorystate.h \
+    States/statecontroller.h \   
+    Term/mainwindow.h \
+    Term/cframe.h \
+    Term/clabel.h
 
-FORMS += \
-        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

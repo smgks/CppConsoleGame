@@ -5,6 +5,7 @@
 
 class MenuState : public BaseState
 {
+    Q_OBJECT
 public:
     MenuState();
 };
