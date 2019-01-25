@@ -3,12 +3,12 @@
 
 #include <QVector>
 #include <ncurses.h>
+#include "clabel.h"
 #include "cframe.h"
 
 class MainWindow : public BaseConsoleObject
 {
     Q_OBJECT
-
 public:
     explicit MainWindow(BaseConsoleObject  *parent = nullptr);
     ~MainWindow();
@@ -16,10 +16,13 @@ public:
     void initialize();
     void reDraw();
     void update();
-private:
-    QVector<CFrame*> wins_;
+    int getLines();
+    int getCols();
+private: 
+    QVector<BaseConsoleObject*> wins_;
     void clearWinsMem_();
     void updateWins_();
+    void initColors();
 };
 
 #endif // MAINWINDOW_H

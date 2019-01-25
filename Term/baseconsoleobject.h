@@ -11,6 +11,11 @@ public:
     virtual void initialize() = 0;
     virtual void ClearMem() {}
     virtual void update() {}
+protected:
+    int vertical;
+    int horizontal;
+    int posX;
+    int posY;
 };
 
 #endif // BASECONSOLEOBJECT_H

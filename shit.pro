@@ -49,7 +49,8 @@ HEADERS += \
     Term/mainwindow.h \
     Term/cframe.h \
     Term/clabel.h \
-    Term/baseconsoleobject.h
+    Term/baseconsoleobject.h \
+    Term/consolecolor.h
 
 
 # Default rules for deployment.

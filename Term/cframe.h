@@ -15,10 +15,7 @@ public:
     void ClearMem();
 private:
     WINDOW *win_;
-    int vertical;
-    int horizontal;
-    int posX;
-    int posY;
+
 };
 
 #endif // CFRAME_H
