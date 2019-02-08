@@ -1,8 +1,10 @@
 #include "cchar.h"
 
-CChar::CChar(char ch, int x, int y, QObject *parent)
+
+CChar::CChar(Map *mp, int x, int y, QObject *parent)
     : BaseConsoleObject(parent)
 {
+    map = mp;
     posX = x;
     posY = y;
 }
@@ -10,7 +12,13 @@ CChar::CChar(char ch, int x, int y, QObject *parent)
 void CChar::initialize()
 {
     color_set(color,NULL);
-    mvaddch(posY, posX, text);
+    QVector<QString> sl = map->getMapSlice(0 + map->dynamicObjects[0]->getX() - (COLS*4/5-2)/2,
+                                           0 + map->dynamicObjects[0]->getY() - (LINES-2)/2,
+                                           0 + map->dynamicObjects[0]->getX() + (COLS*4/5-2)/2,
+                                           0 + map->dynamicObjects[0]->getY() + (LINES-2)/2);
+    for (int i = 0; i < sl.size(); ++i) {
+        mvaddstr(posY+i, posX, sl[i].toStdString().c_str());
+    }
 }
 
 void CChar::ClearMem()

@@ -1,11 +1,13 @@
 #include "mapgenarator.h"
+#include "Entity/charecter.h"
+#include "Entity/enemy.h"
 
 MapGenerator::MapGenerator(QObject *parent)
     : QObject(parent)
 {
     wall = new Wall(this);
     floor = new Floor(this);
-    mapEnt = new Map;
+    mapEnt = new Map(this);
 }
 
 Map* MapGenerator::genMap(quint32 w, quint32 h)
@@ -34,6 +36,23 @@ Map* MapGenerator::genMap(quint32 w, quint32 h)
         drawRoom(r.x,r.y,r.w,r.h);
     }
     linkRooms();
+
+    mapEnt->startX = rooms[0].centerx;
+    mapEnt->startY = rooms[0].centery;
+
+    Charecter *chr = new Charecter(this);
+    chr->setX(rooms[0].centerx);
+    chr->setY(rooms[0].centery);
+    mapEnt->dynamicObjects.push_back(chr);
+
+    for (int i = 0; i < rooms.size(); ++i) {
+        Enemy *enemy = new Enemy(this);
+        enemy->setX(rooms[i].centerx);
+        enemy->setY(rooms[i].centery);
+        mapEnt->dynamicObjects.push_back(enemy);
+    }
+
+    return mapEnt;
 }
 
 void MapGenerator::printMap(){

@@ -22,11 +22,14 @@ void StateController::setState(int st)
     switch (st) {
     case gameStates::Game:
         currentState = game;
+        connect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         break;
     case gameStates::IDLE:
+        disconnect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         currentState = idle;
         break;
     case gameStates::Menu:
+        disconnect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         currentState = menu;
         break;
     default:
@@ -44,4 +47,5 @@ void StateController::keyPressed(int ch)
 void StateController::onTick()
 {
     currentState->update();
+    emit eventTick();
 }

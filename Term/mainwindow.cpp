@@ -12,7 +12,7 @@ MainWindow::MainWindow(QObject *parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(onTick()));
-    timer->start(std::chrono::milliseconds(1000/30));
+    timer->start(std::chrono::milliseconds(1000/15));
 
     reader = new ConsoleReader(this);
     connect(reader, SIGNAL(keyPressSignal(int)), this, SLOT(keyPressed(int)));

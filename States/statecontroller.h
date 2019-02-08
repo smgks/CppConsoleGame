@@ -20,6 +20,7 @@ private:
     BaseState *currentState;
 signals:
     void keyPressSignal(int ch);
+    void eventTick();
 public slots:
     void setState(int st);
     void keyPressed(int ch);

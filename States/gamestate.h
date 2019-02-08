@@ -14,6 +14,9 @@ public:
     void update();
 public slots:
     void keyPressed(int);
+    void onTick();
+signals:
+    void eventTick();
 private:
     GameWidget *temp;
     MapGenerator *mpGen;

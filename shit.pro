@@ -43,7 +43,6 @@ SOURCES += \
     Term/gamestateWin/ldlewidget.cpp \
     States/gameoverstate.cpp \
     Term/gamestateWin/gameowerwidget.cpp \
-    GLogick/maphenerator.cpp \
     GLogick/map.cpp \
     GLogick/controller.cpp \
     GLogick/Entity/movableentity.cpp \
@@ -51,7 +50,10 @@ SOURCES += \
     GLogick/Entity/wall.cpp \
     GLogick/Entity/floor.cpp \
     GLogick/Entity/staticobject.cpp \
-    Term/cchar.cpp
+    Term/cchar.cpp \
+    GLogick/Entity/charecter.cpp \
+    GLogick/mapgenerator.cpp \
+    GLogick/Entity/enemy.cpp
 
 HEADERS += \
     States/basestate.h \
@@ -79,7 +81,9 @@ HEADERS += \
     GLogick/Entity/wall.h \
     GLogick/Entity/floor.h \
     GLogick/Entity/staticobject.h \
-    Term/cchar.h
+    Term/cchar.h \
+    GLogick/Entity/charecter.h \
+    GLogick/Entity/enemy.h
 
 
 # Default rules for deployment.

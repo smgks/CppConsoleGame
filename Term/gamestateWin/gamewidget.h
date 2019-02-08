@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "Term/gamestateWin/basewidget.h"
+#include "Term/cchar.h"
 #include "GLogick/map.h"
 class GameWidget : public BaseWidget
 {
@@ -13,6 +14,7 @@ private:
     Map *map;
     CFrame *mapField;
     CFrame *stateBar;
+    CChar *mapScene;
 };
 
 #endif // GAMEWIDGET_H

@@ -11,6 +11,7 @@
 #include "map.h"
 
 class MapGenerator : public QObject{
+    Q_OBJECT
     struct Room {
         Room(int _x =0,int _y=0, int _w=0 ,int _h=0);
             int x, y, w, h;
