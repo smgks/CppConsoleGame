@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
-
+QT += gui core
 TARGET = shit
 TEMPLATE = app
 
@@ -32,25 +31,53 @@ SOURCES += \
     States/gamestate.cpp \
     States/menustate.cpp \
     States/idlestate.cpp \
-    States/inventorystate.cpp \
     States/statecontroller.cpp \
     Term/mainwindow.cpp \
     Term/cframe.cpp \
     Term/clabel.cpp \
-    Term/baseconsoleobject.cpp
+    Term/baseconsoleobject.cpp \
+    Term/gamestateWin/menuwidget.cpp \
+    Term/gamestateWin/basewidget.cpp \
+    Term/consolereader.cpp \
+    Term/gamestateWin/gamewidget.cpp \
+    Term/gamestateWin/ldlewidget.cpp \
+    States/gameoverstate.cpp \
+    Term/gamestateWin/gameowerwidget.cpp \
+    GLogick/maphenerator.cpp \
+    GLogick/map.cpp \
+    GLogick/controller.cpp \
+    GLogick/Entity/movableentity.cpp \
+    GLogick/Entity/sceneentity.cpp \
+    GLogick/Entity/wall.cpp \
+    GLogick/Entity/floor.cpp \
+    GLogick/Entity/staticobject.cpp
 
 HEADERS += \
     States/basestate.h \
     States/gamestate.h \
     States/menustate.h \
     States/idlestate.h \
-    States/inventorystate.h \
     States/statecontroller.h \   
     Term/mainwindow.h \
     Term/cframe.h \
     Term/clabel.h \
     Term/baseconsoleobject.h \
-    Term/consolecolor.h
+    Term/consolecolor.h \
+    Term/gamestateWin/menuwidget.h \
+    Term/gamestateWin/basewidget.h \
+    Term/consolereader.h \
+    Term/gamestateWin/gamewidget.h \
+    Term/gamestateWin/ldlewidget.h \
+    Term/gamestateWin/gameowerwidget.h \
+    GLogick/mapgenarator.h \
+    States/gameoverstate.h \
+    GLogick/map.h \
+    GLogick/controller.h \
+    GLogick/Entity/movableentity.h \
+    GLogick/Entity/sceneentity.h \
+    GLogick/Entity/wall.h \
+    GLogick/Entity/floor.h \
+    GLogick/Entity/staticobject.h
 
 
 # Default rules for deployment.

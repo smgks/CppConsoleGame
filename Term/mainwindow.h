@@ -2,27 +2,33 @@
 #define MAINWINDOW_H
 
 #include <QVector>
-#include <ncurses.h>
-#include "clabel.h"
-#include "cframe.h"
+#include <QTextStream>
+#include <QTimer>
+#include <QKeyEvent>
+#include "States/statecontroller.h"
+#include "consolereader.h"
 
-class MainWindow : public BaseConsoleObject
+class MainWindow : public QObject
 {
     Q_OBJECT
 public:
-    explicit MainWindow(BaseConsoleObject  *parent = nullptr);
+    explicit MainWindow(QObject  *parent = nullptr);
     ~MainWindow();
     void setCurs(bool v);
-    void initialize();
-    void reDraw();
     void update();
-    int getLines();
-    int getCols();
+public slots:
+    void onTick();
+    void keyPressed(int ch);
+signals:
+    void shutdownReader();
+    void keyPressSignal(int ch);
+    void eventTick();
+    void resizeEvent();
 private: 
-    QVector<BaseConsoleObject*> wins_;
-    void clearWinsMem_();
-    void updateWins_();
     void initColors();
+    QTimer *timer;
+    ConsoleReader *reader;
+    StateController *stateCntrl;
 };
 
 #endif // MAINWINDOW_H

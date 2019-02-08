@@ -1,78 +1,62 @@
 #include "mainwindow.h"
 #include "consolecolor.h"
-MainWindow::MainWindow(BaseConsoleObject *parent) :
-    BaseConsoleObject (parent)
+
+MainWindow::MainWindow(QObject *parent)
+    : QObject(parent)
 {
+
     initscr();
     setCurs(0);
-    refresh();
     initColors();
-    CFrame *win = new CFrame(4*LINES/5, COLS/2, (LINES - 4*LINES/5)/2,COLS/4, this);
-    printw("Hello World !!!");
-    CLabel *textlb = new CLabel("xui",LINES/2,COLS/2);
-    textlb->setColor(ConsoleText::Color::R_StandartText);
-    wins_.append(win);
-
-    wins_.append(textlb);
-    updateWins_();
-    reDraw();
-    getch();
-}
-
-void MainWindow::initialize()
-{
-
     update();
-    updateWins_();
 
-}
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(onTick()));
+    timer->start(std::chrono::milliseconds(1000/30));
 
-void MainWindow::reDraw()
-{
-    clear();
-    initialize();
-    updateWins_();
+    reader = new ConsoleReader(this);
+    connect(reader, SIGNAL(keyPressSignal(int)), this, SLOT(keyPressed(int)));
+    connect(this, SIGNAL(shutdownReader()), reader, SLOT(shutdownThread()));
+    reader->start();
+
+    stateCntrl = new StateController(this);
+    connect(this,SIGNAL(keyPressSignal(int)),stateCntrl,SLOT(keyPressed(int)));
+    connect(this,SIGNAL(eventTick()),stateCntrl,SLOT(onTick()));
+    update();
 }
 
 void MainWindow::update()
-{
+{   
     refresh();
 }
 
-int MainWindow::getLines()
+void MainWindow::onTick()
 {
-    return LINES;
+    emit eventTick();
+    update();
 }
 
-int MainWindow::getCols()
+void MainWindow::keyPressed(int ch)
 {
-    return COLS;
-}
-
-void MainWindow::clearWinsMem_()
-{
-    for (int i = 0; i < wins_.length(); ++i) {
-        wins_.at(i)->ClearMem();
-        delete wins_.at(i);
-        wins_.pop_front();
-    }
-}
-
-void MainWindow::updateWins_()
-{
-    for (int i = 0; i < wins_.size(); i++) {
-        wins_.at(i)->initialize();
-        wins_.at(i)->update();
-    }
+    emit keyPressSignal(ch);
 }
 
 void MainWindow::initColors()
 {
+
     start_color();
-    init_pair(ConsoleText::Color::StarnartText,COLOR_WHITE,COLOR_BLACK);
-    init_pair(ConsoleText::Color::R_StandartText,COLOR_BLACK,COLOR_WHITE);
-    init_pair(ConsoleText::Color::RedBlack,COLOR_RED,COLOR_BLACK);
-    init_pair(ConsoleText::Color::R_RedBlack,COLOR_BLACK,COLOR_RED);
+    init_pair(ConsoleText::Color::WhiteBlack,
+              COLOR_WHITE,COLOR_BLACK);
+    init_pair(ConsoleText::Color::BlackWhite,
+              COLOR_BLACK,COLOR_WHITE);
+    init_pair(ConsoleText::Color::RedBlack,
+              COLOR_RED,COLOR_BLACK);
+    init_pair(ConsoleText::Color::BlackRed,
+              COLOR_BLACK,COLOR_RED);
+    init_pair(ConsoleText::Color::GreenGreen,
+              COLOR_GREEN,COLOR_GREEN);
+    init_pair(ConsoleText::Color::BlueBlack,
+              COLOR_BLUE,COLOR_BLACK);
 }
 
 void MainWindow::setCurs(bool v)
@@ -80,9 +64,9 @@ void MainWindow::setCurs(bool v)
     curs_set(v);
 }
 
-
 MainWindow::~MainWindow()
 {
-    clearWinsMem_();
+    emit shutdownReader();
+    reader->wait();
     endwin();
 }

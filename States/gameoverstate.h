@@ -3,11 +3,11 @@
 
 #include "basestate.h"
 
-class InventoryState : public BaseState
+class GameOverState : public BaseState
 {
     Q_OBJECT
 public:
-    InventoryState();
+    GameOverState(QObject *parent = nullptr);
 };
 
 #endif // INVENTORYSTATE_H

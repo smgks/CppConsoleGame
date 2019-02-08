@@ -8,7 +8,11 @@ class CFrame : public BaseConsoleObject
 {
     Q_OBJECT
 public:
-    explicit CFrame(int w_lines = LINES,int h_colums = COLS, int x = 0, int y = 0, BaseConsoleObject *parent = nullptr);
+    explicit CFrame(QObject *parent = nullptr);
+
+    explicit CFrame(qreal h_proc = 0, qreal v_proc = 0,
+                    qreal x_proc = 0, qreal y_proc = 0,
+                    QObject *parent = nullptr);
     ~CFrame();
     void update();
     void initialize();
