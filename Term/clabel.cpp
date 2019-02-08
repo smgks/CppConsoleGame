@@ -50,7 +50,7 @@ void CLabel::initialize()
     color_set(m_color,NULL);
     mvaddstr(int(LINES*posY) + offsetY, int(COLS*posX) + offsetX,
              m_text.toStdString().c_str());
-    refresh();
+//    refresh();
 }
 
 void CLabel::ClearMem()

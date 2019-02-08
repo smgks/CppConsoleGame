@@ -1,8 +1,6 @@
 #ifndef CLABEL_H
 #define CLABEL_H
 
-#include <ncurses.h>
-
 #include "consolecolor.h"
 #include "baseconsoleobject.h"
 

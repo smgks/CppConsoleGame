@@ -1,9 +1,10 @@
 #include "gamewidget.h"
 
-GameWidget::GameWidget(QObject *parent)
+GameWidget::GameWidget(Map *mp, QObject *parent)
     :BaseWidget(parent)
 {
-    map = new CFrame(4/5., 1.,
+    map = mp;
+    mapField = new CFrame(4/5., 1.,
                      0, 0,
                      this);
     stateBar = new CFrame(1. - 4/5., 1,
@@ -11,5 +12,5 @@ GameWidget::GameWidget(QObject *parent)
                           this);
     stateBar->setOffsetX(1);
     coVec.push_back(stateBar);
-    coVec.push_back(map);
+    coVec.push_back(mapField);
 }

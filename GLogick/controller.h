@@ -3,10 +3,10 @@
 
 #include "Entity/sceneentity.h"
 
-class Controller
+class Controller : QObject
 {
 public:
-    Controller();
+    Controller(QObject *parent = nullptr);
     SceneEntity* collideOnPoint();
 };
 

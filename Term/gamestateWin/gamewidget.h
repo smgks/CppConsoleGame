@@ -3,14 +3,15 @@
 
 #include <QObject>
 #include "Term/gamestateWin/basewidget.h"
-
+#include "GLogick/map.h"
 class GameWidget : public BaseWidget
 {
     Q_OBJECT
 public:
-    GameWidget(QObject *parent = nullptr);
+    GameWidget(Map* mp, QObject *parent = nullptr);
 private:
-    CFrame *map;
+    Map *map;
+    CFrame *mapField;
     CFrame *stateBar;
 };
 

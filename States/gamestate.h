@@ -3,6 +3,8 @@
 
 #include "basestate.h"
 #include "Term/gamestateWin/gamewidget.h"
+#include "GLogick/mapgenarator.h"
+#include "GLogick/controller.h"
 
 class GameState : public BaseState
 {
@@ -14,6 +16,8 @@ public slots:
     void keyPressed(int);
 private:
     GameWidget *temp;
+    MapGenerator *mpGen;
+    Controller *controller;
 };
 
 #endif // GAMESTATE_H

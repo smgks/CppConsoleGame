@@ -1,13 +1,16 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Entity/movableentity.h"
 #include <QVector>
-class Map
+
+#include "Entity/movableentity.h"
+#include "Entity/staticobject.h"
+
+class Map : public QObject
 {
 public:
-    Map();
-    QVector<QVector<SceneEntity*>> map;
+    Map(QObject *parent = nullptr);
+    QVector<QVector<StaticObject*>> map;
     QVector<MovableEntity*> dynamicObjects;
 };
 

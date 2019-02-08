@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define MAP_H
+#ifndef MAPGENERATOR_H
+#define MAPGENERATOR_H
 
 #include <QCoreApplication>
 #include <QTextStream>
@@ -8,7 +8,7 @@
 
 #include "Entity/wall.h"
 #include "Entity/floor.h"
-#include "GLogick/map.h"
+#include "map.h"
 
 class MapGenerator : public QObject{
     struct Room {
@@ -20,11 +20,12 @@ class MapGenerator : public QObject{
     };
 public:
     explicit MapGenerator(QObject *parent = nullptr);
-    Map genMap(quint32 w,quint32 h);
+    Map* genMap(quint32 w,quint32 h);
     void printMap();
 private:
     QVector<QVector<char>> map;
     QVector<Room> rooms;
+    Map *mapEnt;
     Wall *wall;
     Floor *floor;
     void drawCorridor(int sx, int sy, int ex, int ey);
@@ -33,4 +34,4 @@ private:
     void generate(int roomsCount, int l_w, int l_h);
 };
 
-#endif // MAP_H
+#endif // MAPGENERATOR_H

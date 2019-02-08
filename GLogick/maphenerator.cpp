@@ -5,11 +5,12 @@ MapGenerator::MapGenerator(QObject *parent)
 {
     wall = new Wall(this);
     floor = new Floor(this);
+    mapEnt = new Map;
 }
 
-void MapGenerator::genMap(quint32 w, quint32 h)
+Map* MapGenerator::genMap(quint32 w, quint32 h)
 {
-    map.clear();
+    mapEnt->map.clear();
     quint32 sx = 0;
     quint32 sy = 0;
     quint32 ex = 0;
@@ -23,9 +24,9 @@ void MapGenerator::genMap(quint32 w, quint32 h)
     }
 
     for (int i = 0; i < h; ++i) {
-        map.push_back(QVector<char>());
+        mapEnt->map.push_back(QVector<StaticObject*>());
         for (int j = 0; j < w; ++j) {
-            map[i].push_back('#');
+            mapEnt->map[i].push_back(wall);
         }
     }
     generate(3 + w/10+h/8,w,h);
@@ -36,22 +37,22 @@ void MapGenerator::genMap(quint32 w, quint32 h)
 }
 
 void MapGenerator::printMap(){
-    for (int i = 0; i < map.size(); ++i) {
-        for (int j = 0; j < map.at(0).size(); ++j) {
-            QTextStream(stdout) << map[i][j];
-        }
-        QTextStream(stdout) << "\n";
-    }
+//    for (int i = 0; i < map.size(); ++i) {
+//        for (int j = 0; j < map.at(0).size(); ++j) {
+//            QTextStream(stdout) << map[i][j];
+//        }
+//        QTextStream(stdout) << "\n";
+//    }
 }
 
 void MapGenerator::drawCorridor(int sx, int sy, int ex, int ey){
     int i = sy;
     int j = sx;
     for (; i != ey; (sy>ey) ? --i :++i) {
-        map[i][j] = ',';
+        mapEnt->map[i][j] = floor;
     }
     for (; j != ex;(sx>ex) ? --j :++j) {
-        map[i][j] = ',';
+        mapEnt->map[i][j] = floor;
     }
 
 
@@ -69,7 +70,7 @@ void MapGenerator::drawRoom(int x, int y, int w, int h)
 {
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
-            map[y+i][x+j] = '.';
+            mapEnt->map[y+i][x+j] = floor;
         }
     }
 }
@@ -77,22 +78,16 @@ void MapGenerator::drawRoom(int x, int y, int w, int h)
 void MapGenerator::generate(int roomsCount, int l_w, int l_h) {
     rooms.clear();
 
-    // второй цикл предотвращает залипание, в случае если на карту уже не помещается ни одной комнаты
+// я не знаю почему, но оно работает
     for (int i = 0; i < roomsCount; ++i) {
         for (int j = 0; j < 1000; ++j) {
-            // ширина и высота комнаты в пределах [10,40]
             const int w = 4 + QRandomGenerator::global()->generate() % l_w/8,
                     h = 4 + QRandomGenerator::global()->generate() % l_h/6;
-            // избегаем "прилипания" комнаты к краю карты
             const Room room(3 + QRandomGenerator::global()->generate() % (l_w - w - 6),
                             3 + QRandomGenerator::global()->generate() % (l_h - h - 6), w, h);
-
-            // найдем первую комнату, из уже существующих, которая пересекается с новой
             auto intersect = std::find_if(rooms.begin(), rooms.end(), [&room](const Room &r){
                 return room.intersect(r);
             });
-
-            // если новая комната не имеет пересечений - добавляем ее
             if (intersect == rooms.end()) {
                 rooms.push_back(room);
                 break;

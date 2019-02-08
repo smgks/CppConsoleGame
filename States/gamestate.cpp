@@ -3,7 +3,9 @@
 GameState::GameState(QObject *parent)
     :BaseState(parent)
 {
-    temp = new GameWidget(this);
+    mpGen = new MapGenerator(this);
+    temp = new GameWidget(mpGen->genMap(100,200),this);
+    controller = new Controller(this);
 }
 
 void GameState::update()

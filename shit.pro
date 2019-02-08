@@ -50,7 +50,8 @@ SOURCES += \
     GLogick/Entity/sceneentity.cpp \
     GLogick/Entity/wall.cpp \
     GLogick/Entity/floor.cpp \
-    GLogick/Entity/staticobject.cpp
+    GLogick/Entity/staticobject.cpp \
+    Term/cchar.cpp
 
 HEADERS += \
     States/basestate.h \
@@ -77,7 +78,8 @@ HEADERS += \
     GLogick/Entity/sceneentity.h \
     GLogick/Entity/wall.h \
     GLogick/Entity/floor.h \
-    GLogick/Entity/staticobject.h
+    GLogick/Entity/staticobject.h \
+    Term/cchar.h
 
 
 # Default rules for deployment.
