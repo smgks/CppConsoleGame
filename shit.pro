@@ -53,7 +53,9 @@ SOURCES += \
     Term/cchar.cpp \
     GLogick/Entity/charecter.cpp \
     GLogick/mapgenerator.cpp \
-    GLogick/Entity/enemy.cpp
+    GLogick/Entity/enemy.cpp \
+    GLogick/Entity/projectile.cpp \
+    GLogick/Entity/door.cpp
 
 HEADERS += \
     States/basestate.h \
@@ -83,7 +85,9 @@ HEADERS += \
     GLogick/Entity/staticobject.h \
     Term/cchar.h \
     GLogick/Entity/charecter.h \
-    GLogick/Entity/enemy.h
+    GLogick/Entity/enemy.h \
+    GLogick/Entity/projectile.h \
+    GLogick/Entity/door.h
 
 
 # Default rules for deployment.

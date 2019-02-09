@@ -3,7 +3,8 @@
 Enemy::Enemy(QObject *parent)
     : Charecter(parent)
 {
-
+    damage = 30;
+    ch = 'Z';
 }
 
 void Enemy::move()

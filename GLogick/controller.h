@@ -3,6 +3,7 @@
 
 #include "Entity/sceneentity.h"
 #include "Entity/charecter.h"
+#include "Entity/enemy.h"
 #include <QObject>
 #include "map.h"
 
@@ -16,6 +17,10 @@ public:
     void moveCharDown();
     void moveCharLeft();
     void moveCharRight();
+    void mobShooting(Enemy *enemy);
+signals:
+    void playerDead();
+    void generateNewMap();
 public slots:
     void onTick();
 private:
@@ -23,6 +28,7 @@ private:
     Charecter *chr;
     int deltaFrame;
     void moveMobs();
+    bool collideCharWithWalls();
 };
 
 #endif // CONTROLLER_H

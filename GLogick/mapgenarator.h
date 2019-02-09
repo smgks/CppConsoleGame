@@ -8,6 +8,7 @@
 
 #include "Entity/wall.h"
 #include "Entity/floor.h"
+#include "Entity/door.h"
 #include "map.h"
 
 class MapGenerator : public QObject{
@@ -29,6 +30,7 @@ private:
     Map *mapEnt;
     Wall *wall;
     Floor *floor;
+    Door *door;
     void drawCorridor(int sx, int sy, int ex, int ey);
     void linkRooms();
     void drawRoom(int x,int y,int w,int h);

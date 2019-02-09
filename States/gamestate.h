@@ -15,6 +15,8 @@ public:
 public slots:
     void keyPressed(int);
     void onTick();
+    void onPLayerDeath();
+    void onGenerateNewMap();
 signals:
     void eventTick();
 private:

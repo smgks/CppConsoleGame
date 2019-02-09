@@ -9,6 +9,9 @@ GameState::GameState(QObject *parent)
     controller = new Controller(this);
     controller->setMap(tempmap);
     connect(this,SIGNAL(eventTick()),controller,SLOT(onTick()));
+    connect(controller,SIGNAL(playerDead()),this,SLOT(onPLayerDeath()));
+    connect(controller,SIGNAL(generateNewMap()),this,SLOT(onGenerateNewMap()));
+
 }
 
 void GameState::update()
@@ -43,4 +46,21 @@ void GameState::keyPressed(int ch)
 void GameState::onTick()
 {
     emit eventTick();
+}
+
+void GameState::onPLayerDeath()
+{
+    temp->hide();
+    onGenerateNewMap();
+    emit changeStateto(gameStates::GameOver);
+}
+
+void GameState::onGenerateNewMap()
+{
+    delete mpGen;
+    mpGen = new MapGenerator(this);
+    Map *tempmap = mpGen->genMap(100,50);
+    delete temp;
+    temp = new GameWidget(tempmap,this);
+    controller->setMap(tempmap);
 }

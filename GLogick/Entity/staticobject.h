@@ -7,7 +7,6 @@ class StaticObject : public SceneEntity
 {
 public:
     StaticObject(QObject *parent = nullptr);
-    bool isMovable;
 };
 
 #endif // STATICOBJECT_H

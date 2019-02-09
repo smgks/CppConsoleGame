@@ -16,7 +16,7 @@ private:
     MenuState *menu;
     GameState *game;
     IdleState *idle;
-    GameOverState *inventory;
+    GameOverState *gameover;
     BaseState *currentState;
 signals:
     void keyPressSignal(int ch);

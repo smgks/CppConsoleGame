@@ -7,6 +7,7 @@ MapGenerator::MapGenerator(QObject *parent)
 {
     wall = new Wall(this);
     floor = new Floor(this);
+    door = new Door(this);
     mapEnt = new Map(this);
 }
 
@@ -45,23 +46,20 @@ Map* MapGenerator::genMap(quint32 w, quint32 h)
     chr->setY(rooms[0].centery);
     mapEnt->dynamicObjects.push_back(chr);
 
-    for (int i = 0; i < rooms.size(); ++i) {
+    for (int i = 1; i < rooms.size()-1; ++i) {
+        {
+            Enemy *enemy = new Enemy(this);
+            enemy->setX(rooms[i].centerx);
+            enemy->setY(rooms[i].centery);
+            mapEnt->dynamicObjects.push_back(enemy);
+        }
         Enemy *enemy = new Enemy(this);
-        enemy->setX(rooms[i].centerx);
-        enemy->setY(rooms[i].centery);
+        enemy->setX(rooms[i].x);
+        enemy->setY(rooms[i].y);
         mapEnt->dynamicObjects.push_back(enemy);
     }
-
+    mapEnt->map[rooms.last().centery][rooms.last().centerx] = door;
     return mapEnt;
-}
-
-void MapGenerator::printMap(){
-//    for (int i = 0; i < map.size(); ++i) {
-//        for (int j = 0; j < map.at(0).size(); ++j) {
-//            QTextStream(stdout) << map[i][j];
-//        }
-//        QTextStream(stdout) << "\n";
-//    }
 }
 
 void MapGenerator::drawCorridor(int sx, int sy, int ex, int ey){

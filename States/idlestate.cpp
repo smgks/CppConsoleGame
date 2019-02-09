@@ -24,8 +24,8 @@ void IdleState::keyPressed(int ch)
         break;
     case 13:
         if (!activeBtn) {
-            emit changeStateto(gameStates::Game);
             idle->hide();
+            emit changeStateto(gameStates::Game);
         }
         else {
             idle->hide();

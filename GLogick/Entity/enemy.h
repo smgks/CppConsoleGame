@@ -8,7 +8,10 @@ class Enemy : public Charecter
 {
 public:
     Enemy(QObject *parent = nullptr);
-    void move();
+    virtual void move();
+    int getDamage(){return damage;}
+private:
+    int damage;
 };
 
 #endif // ENEMY_H

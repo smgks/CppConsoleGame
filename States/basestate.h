@@ -4,7 +4,7 @@
 #include <QObject>
 #include "Term/gamestateWin/basewidget.h"
 enum gameStates{
-    Menu,Game,IDLE
+    Menu,Game,IDLE,GameOver
 };
 
 class BaseState : public QObject

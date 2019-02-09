@@ -5,7 +5,7 @@ StateController::StateController(QObject *parent)
 {
     menu = new MenuState(this);
     setState(gameStates::Menu);
-
+    gameover = new GameOverState(this);
     game = new GameState(this);
     idle = new IdleState(this);
 }
@@ -19,18 +19,20 @@ void StateController::setState(int st)
 {
     disconnect(currentState,SIGNAL(changeStateto(int)),this,SLOT(setState(int)));
     disconnect(this,SIGNAL(keyPressSignal(int)),currentState,SLOT(keyPressed(int)));
+    disconnect(this,SIGNAL(eventTick()),game,SLOT(onTick()));
     switch (st) {
     case gameStates::Game:
         currentState = game;
         connect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         break;
     case gameStates::IDLE:
-        disconnect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         currentState = idle;
         break;
     case gameStates::Menu:
-        disconnect(this,SIGNAL(eventTick()),currentState,SLOT(onTick()));
         currentState = menu;
+        break;
+    case gameStates::GameOver:
+        currentState = gameover;
         break;
     default:
         break;

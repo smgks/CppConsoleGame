@@ -8,7 +8,10 @@ class Charecter : public MovableEntity
     Q_OBJECT
 public:
     explicit Charecter(QObject *parent = nullptr);
-
+    void damage(int dmg);
+    int getHP(){return hp;}
+private:
+    int hp;
 };
 
 #endif // CHARECTER_H
