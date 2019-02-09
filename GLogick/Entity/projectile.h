@@ -5,8 +5,9 @@
 
 class Projectile : public Enemy
 {
+    Q_OBJECT
 public:
-    Projectile();
+    Projectile(QObject *parent = nullptr);
     void move();
 private:
     int offsetX;

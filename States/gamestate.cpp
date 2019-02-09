@@ -4,7 +4,7 @@ GameState::GameState(QObject *parent)
     :BaseState(parent)
 {
     mpGen = new MapGenerator(this);
-    Map *tempmap = mpGen->genMap(500,200);
+    Map *tempmap = mpGen->genMap(150,80);
     temp = new GameWidget(tempmap,this);
     controller = new Controller(this);
     controller->setMap(tempmap);
@@ -59,7 +59,7 @@ void GameState::onGenerateNewMap()
 {
     delete mpGen;
     mpGen = new MapGenerator(this);
-    Map *tempmap = mpGen->genMap(100,50);
+    Map *tempmap = mpGen->genMap(150,80);
     delete temp;
     temp = new GameWidget(tempmap,this);
     controller->setMap(tempmap);

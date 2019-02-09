@@ -6,11 +6,12 @@
 
 class Enemy : public Charecter
 {
+    Q_OBJECT
 public:
     Enemy(QObject *parent = nullptr);
     virtual void move();
     int getDamage(){return damage;}
-private:
+protected:
     int damage;
 };
 

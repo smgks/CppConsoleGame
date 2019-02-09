@@ -40,9 +40,30 @@ void Controller::moveCharRight()
         moveCharLeft();
 }
 
-void Controller::mobShooting(Enemy *enemy)
+void Controller::mobShooting()
 {
+    for (int i = 1; i < map->dynamicObjects.size(); ++i) {
+        Projectile *temp = new Projectile(this);
+        temp->setX(map->dynamicObjects[i]->getX());
+        temp->setY(map->dynamicObjects[i]->getY());
+        map->projectiles.push_back(temp);
+    }
+}
 
+void Controller::moveProjectiles()
+{
+    for (Projectile *i : map->projectiles) {
+        i->move();
+    }
+    for (int i = map->projectiles.size() - 1; i > -1; i--) {
+        Projectile *temp = map->projectiles[i];
+        if (map->map[temp->getY()][temp->getX()]->getCh() == '#')
+            map->projectiles.remove(i);
+        if ((temp->getY() == chr->getY()) && (temp->getX() == chr->getX())) {
+            chr->damage(temp->getDamage());
+            map->projectiles.remove(i);
+        }
+    }
 }
 
 void Controller::onTick()
@@ -52,8 +73,12 @@ void Controller::onTick()
         moveMobs();
         if (deltaFrame > 30){
             deltaFrame = 0;
-//            mobShooting();
+            mobShooting();
         }
+    }
+    if(deltaFrame % 5){
+        moveProjectiles();
+
     }
 }
 

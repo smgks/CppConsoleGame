@@ -27,5 +27,11 @@ QVector<QString> Map::getMapSlice(int sx, int sy,
                 result[i->getY()-sy][i->getX()-sx] = i->getCh();
         }
     }
+    for (Projectile *i : projectiles) {
+        if ((i->getX() >= sx && i->getX() < ex)
+         && (i->getY() >= sy && i->getY() < ey)) {
+                result[i->getY()-sy][i->getX()-sx] = i->getCh();
+        }
+    }
     return result;
 }

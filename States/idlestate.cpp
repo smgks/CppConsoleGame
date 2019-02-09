@@ -31,7 +31,5 @@ void IdleState::keyPressed(int ch)
             idle->hide();
             QCoreApplication::exit(0);
         }
-    default:
-        break;
     }
 }

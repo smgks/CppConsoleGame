@@ -15,7 +15,7 @@ void CChar::initialize()
     QVector<QString> sl = map->getMapSlice(0 + map->dynamicObjects[0]->getX() - (COLS-2)/2,
                                            0 + map->dynamicObjects[0]->getY() - (LINES-2)/2,
                                            0 + map->dynamicObjects[0]->getX() + (COLS-2)/2,
-                                           0 + map->dynamicObjects[0]->getY() + (LINES-2)/2);
+                                           0 + map->dynamicObjects[0]->getY() + (LINES-2)/2 + 1);
     for (int i = 0; i < sl.size(); ++i) {
         mvaddstr(posY+i, posX, sl[i].toStdString().c_str());
     }

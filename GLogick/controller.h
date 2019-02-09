@@ -4,6 +4,7 @@
 #include "Entity/sceneentity.h"
 #include "Entity/charecter.h"
 #include "Entity/enemy.h"
+#include "Entity/projectile.h"
 #include <QObject>
 #include "map.h"
 
@@ -17,7 +18,8 @@ public:
     void moveCharDown();
     void moveCharLeft();
     void moveCharRight();
-    void mobShooting(Enemy *enemy);
+    void mobShooting();
+    void moveProjectiles();
 signals:
     void playerDead();
     void generateNewMap();
@@ -26,6 +28,7 @@ public slots:
 private:
     Map *map;
     Charecter *chr;
+
     int deltaFrame;
     void moveMobs();
     bool collideCharWithWalls();

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += gui core
+QT += gui core testlib
 TARGET = shit
 TEMPLATE = app
 
@@ -13,9 +13,9 @@ TEMPLATE = app
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-
-QMAKE_CXXFLAGS += -lncurses
-QMAKE_CXXFLAGS_DEBUG += -lncurses
+QMAKE_CXXFLAGS += -lncurses --coverage
+QMAKE_CXXFLAGS_DEBUG += -lncurses --coverage
+QMAKE_LFLAGS += --coverage
 LIBS += -L/usr/include -lncurses
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
